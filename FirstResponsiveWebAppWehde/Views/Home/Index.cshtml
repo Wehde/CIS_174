@@ -1,0 +1,25 @@
+﻿@model GetAgeModel
+@{
+    ViewBag.Title = "Age Calculator";
+}
+<div class="my-1 mx-auto col-md-6">
+    <h1>Age Calculator</h1>
+</div>
+<form asp-action="Index" method="post" class="m-auto">
+    <div asp-validation-summary="All"></div>
+    <div class="my-1 mx-auto col-md-6">
+        <label asp-for="UsersName" class="form-label">Name</label>
+        <input asp-for="UsersName" class="form-control"/>
+    </div>
+    <div class="my-1 mx-auto col-md-6">
+        <label asp-for="UserBirthday" class="form-label">Birthday</label>
+        <input asp-for="UserBirthday" type="date" class="form-control"/>
+    </div>
+    <div class="my-1 mx-auto col-md-6">
+        <input value="@ViewBag.Age" class="form-control" readonly />
+    </div>
+    <div class="my-1 mx-auto col-md-6 d-flex justify-content-evenly">
+        <button type="submit" class="btn btn-primary col-md-3">Calculate</button>
+        <button type="reset" class="btn btn-danger col-md-3">Clear</button>
+    </div>
+</form>
