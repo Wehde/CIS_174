@@ -1,0 +1,33 @@
+﻿@model List<Address>
+@{
+    ViewData["Title"] = "My Address";
+}
+
+<h2>Address List</h2>
+<a asp-controller="Address" asp-action="Add">Add New Address</a>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Street Address</th>
+            <th>City State, Zip</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var address in Model)
+        {
+            <tr>
+                <td>@address.StreetAddress</td>
+                <td>@address.City, @address.State @address.Zip</td>
+                <td>
+                    <a asp-controller="Address" asp-action="Edit"
+                   asp-route-id="@address.AddressID"
+                   asp-route-slug="@address.Slug">Edit</a>
+                    <a asp-controller="Address" asp-action="Delete"
+                   asp-route-id="@address.AddressID"
+                   asp-route-slug="@address.Slug">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
