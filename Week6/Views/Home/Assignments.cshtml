@@ -1,0 +1,43 @@
+﻿@model List<Student>
+
+@{
+    ViewData["Title"] = "Assignments";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    @if (ViewBag.Level >= 8)
+    {
+        <p>Hello Admin</p>
+    }
+    @if (ViewBag.Level < 2)
+    {
+        <p>You do not have a sufficient access level to view this data.</p>
+    }
+    @if (ViewBag.Level > 2)
+    {
+        
+        <table class="table">
+            <tbody>
+                @foreach (var student in Model)
+                {
+                    <tr>
+                        <td>
+                            @student.FirstName
+                        </td>
+                        <td>
+                            @student.LastName
+                        </td>
+                        @if (ViewBag.Level >= 8)
+                        {
+                            <td>
+                                @student.Grade
+                            </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    
+</div>
