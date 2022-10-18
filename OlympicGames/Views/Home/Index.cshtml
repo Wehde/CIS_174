@@ -1,0 +1,48 @@
+﻿@model CountryListViewModel
+@{
+    ViewData["Title"] = "Olympic Games";
+}
+
+<div class="row">
+    <div class="col-sm-3">
+        <h3 class="mt-3">Game</h3>
+        <div class="list-group">
+            @foreach (Game game in Model.Games)
+            {
+                <a asp-action="Index"
+                   asp-route-activeGame="@game.GameId"
+                   asp-route-activeCategory="@Model.ActiveCategory"
+                   class="list-group-item @Model.CheckActiveGame(game.GameId)">
+                   @game.Name
+               </a>
+            }
+        </div>
+
+        <h3 class="mt-3">Category</h3>
+        <div class="list-group">
+            @foreach (Category category in Model.Categories)
+            {
+                <a asp-action="Index"
+                   asp-route-activeGame="@Model.ActiveGame"
+                   asp-route-activeCategory="@category.CategoryId"
+                   class="list-group-item @Model.CheckActiveCategory(category.CategoryId)">
+                   @category.Name
+               </a>
+            }
+        </div>
+    </div>
+
+    <div class="col-sm-9">
+        <ul class="list-inline">
+            @foreach (Country country in Model.Countries) 
+            {
+                <li class="list-inline-item flag-container">
+                    <a asp-action="Details" asp-route-id="@country.CountryId">
+                        <img src="~/flags/@country.FlagUrl" alt="@country.Name" 
+                                title="@country.Name | @country.Game.Name | @country.Sport/@country.Category.Name" />
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+</div>
