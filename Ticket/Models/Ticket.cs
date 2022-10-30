@@ -23,7 +23,8 @@ namespace Ticket.Models
 
         [Required(ErrorMessage = "Please select a status.")]
         public string StatusId { get; set; }
-        public Status Status { get; set; }
+
+        public Status? Status { get; set; }
 
         public bool Overdue =>
             StatusId == "open" && DueDate < DateTime.Today;

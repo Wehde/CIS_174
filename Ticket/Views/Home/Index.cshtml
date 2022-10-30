@@ -48,7 +48,7 @@
                         <td class="@overdue">@ticket.DueDate?.ToShortDateString()</td>
                         <td>@ticket.SprintNumber</td>
                         <td>@ticket.PointValue</td>
-                        <td>@ticket.Status</td>
+                        <td>@ticket.Status.Name</td>
                         <td>
                             <form asp-action="Edit" method="post" asp-route-id="@ViewBag.Filters.FilterString" class="mr-2">
                                 <input type="hidden" name="@nameof(Ticket.Id)" value="@ticket.Id" />
