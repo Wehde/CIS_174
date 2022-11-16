@@ -1,22 +1,26 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Ticket.Models;
+using Ticket.Repository;
 
 namespace Ticket.Controllers
 {
     public class HomeController : Controller
     {
-        private TicketContext context;
-        public HomeController(TicketContext ctx) => context = ctx;
+        private ITicketRepository ticketRepository;
+        public HomeController(ITicketRepository repo)
+        {
+            ticketRepository = repo;
+        }
 
         public IActionResult Index(string id)
         {
             var filters = new Filters(id);
             ViewBag.Filters = filters;
-            ViewBag.Statuses = context.Statuses.ToList();
+            ViewBag.Statuses = ticketRepository.GetAllStatuses();
             ViewBag.DueFilters = Filters.DueFilterValues;
 
-            IQueryable<Models.Ticket> query = context.Tickets.Include(t => t.Status);
+            IQueryable<Models.Ticket> query = ticketRepository.GetQuery();
             if (filters.HasStatus)
             {
                 query = query.Where(t => t.StatusId == filters.StatusId);
@@ -39,7 +43,7 @@ namespace Ticket.Controllers
         [HttpGet]
         public IActionResult Add()
         {
-            ViewBag.Statuses = context.Statuses.ToList();
+            ViewBag.Statuses = ticketRepository.GetAllStatuses();
             return View();
         }
 
@@ -48,13 +52,13 @@ namespace Ticket.Controllers
         {
             if (ModelState.IsValid)
             {
-                context.Tickets.Add(ticket);
-                context.SaveChanges();
+                ticketRepository.InsertTicket(ticket);
+                ticketRepository.Save();
                 return RedirectToAction("Index");
             } 
             else
             {
-                ViewBag.Statuses = context.Statuses.ToList();
+                ViewBag.Statuses = ticketRepository.GetAllStatuses();
                 return View(ticket);
             }
         }
@@ -71,16 +75,16 @@ namespace Ticket.Controllers
         {
             if (selected.StatusId == null)
             {
-                context.Tickets.Remove(selected);
+                ticketRepository.DeleteTicket(selected);
             }
             else
             {
                 string newStatusId = selected.StatusId;
-                selected = context.Tickets.Find(selected.Id);
+                selected = ticketRepository.Find(selected.Id);
                 selected.StatusId = newStatusId;
-                context.Tickets.Update(selected);
+                ticketRepository.UpdateTicket(selected);
             }
-            context.SaveChanges();
+            ticketRepository.Save();
             return RedirectToAction("Index", new { ID = id });
         }
     }

@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32819.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ticket", "Ticket.csproj", "{5A9F25E2-79C8-4561-ABAD-C590DF1FA90D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ticket", "Ticket.csproj", "{5A9F25E2-79C8-4561-ABAD-C590DF1FA90D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketTest", "..\TicketTest\TicketTest.csproj", "{FADC2878-FFF1-44C4-84C9-5A256AD7BE41}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{5A9F25E2-79C8-4561-ABAD-C590DF1FA90D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A9F25E2-79C8-4561-ABAD-C590DF1FA90D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A9F25E2-79C8-4561-ABAD-C590DF1FA90D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FADC2878-FFF1-44C4-84C9-5A256AD7BE41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FADC2878-FFF1-44C4-84C9-5A256AD7BE41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FADC2878-FFF1-44C4-84C9-5A256AD7BE41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FADC2878-FFF1-44C4-84C9-5A256AD7BE41}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

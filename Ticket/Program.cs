@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Ticket.Models;
+using Ticket.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<TicketContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("TicketContext")));
+
+builder.Services.AddScoped<ITicketRepository, TicketRepository>();
 
 var app = builder.Build();
 
